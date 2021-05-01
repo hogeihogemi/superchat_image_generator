@@ -5,8 +5,12 @@
       :content-color="colorList[selectedPriceIndex].content"
       :header-color="colorList[selectedPriceIndex].header"
       :price="Number(state.price).toLocaleString()"
+      :username="state.username"
+      :iconUrl="state.iconUrl"
     />
     <div>
+      <input v-model="state.iconUrl" class="border" />
+      <input v-model="state.username" class="border" />
       <input v-model="state.content" class="border" />
       <select
         :value="state.price"
@@ -68,6 +72,8 @@ export default defineComponent({
     const state = reactive({
       content: 'スパチャです！',
       price: 200,
+      username: '???????',
+      iconUrl: '',
     })
     const savePng = () => {
       domtoimage.toBlob(document.getElementById('card')).then(function (blob) {
