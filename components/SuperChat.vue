@@ -10,14 +10,21 @@
         <div class="price">¥200</div>
       </div>
     </div>
-    <div class="content rounded-b text-left py-2 px-4">スパチャです！！</div>
+    <div class="content rounded-b text-left py-2 px-4">{{ props.content }}</div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from '@nuxtjs/composition-api'
 export default defineComponent({
-  setup() {},
+  props: {
+    content: {},
+  },
+  setup(props) {
+    return {
+      props,
+    }
+  },
 })
 </script>
 

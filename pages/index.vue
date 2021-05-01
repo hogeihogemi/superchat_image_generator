@@ -1,12 +1,16 @@
 <template>
   <div class="container">
-    <SuperChat />
-    <button @click="savePng">save</button>
+    <SuperChat :content="state.content" />
+
+    <div>
+      <input v-model="state.content" class="border" />
+      <button @click="savePng">save</button>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, reactive } from '@nuxtjs/composition-api'
 import SuperChat from '@/components/SuperChat.vue'
 import domtoimage from 'dom-to-image'
 import { saveAs } from 'file-saver'
@@ -16,6 +20,9 @@ export default defineComponent({
     SuperChat,
   },
   setup() {
+    const state = reactive({
+      content: '',
+    })
     const savePng = () => {
       domtoimage.toBlob(document.getElementById('card')).then(function (blob) {
         saveAs(blob, `superChat_${new Date().getTime()}.png`)
@@ -23,6 +30,7 @@ export default defineComponent({
     }
     return {
       savePng,
+      state,
     }
   },
 })
