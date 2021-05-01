@@ -4,12 +4,8 @@
       class="header flex rounded-t py-2 px-4"
       :style="{ 'background-color': props.headerColor }"
     >
-      <!-- <img
-        src="@/assets/hogemi_superchat.jpg"
-        class="icon mr-4 rounded-full h-10 w-10 flex items-center justify-center"
-      /> -->
       <img
-        :src="props.iconUrl"
+        :src="props.iconUrl === '' ? defaultIconUrl : props.iconUrl"
         class="icon mr-4 rounded-full h-10 w-10 flex items-center justify-center"
       />
       <div class="text-left">
@@ -38,8 +34,11 @@ export default defineComponent({
     iconUrl: {},
   },
   setup(props) {
+    const defaultIconUrl =
+      'https://4.bp.blogspot.com/-toaP1vMGZAM/UNbkIddJNqI/AAAAAAAAJTk/MeuaawYOaLw/s200/mark_question.png'
     return {
       props,
+      defaultIconUrl,
     }
   },
 })
