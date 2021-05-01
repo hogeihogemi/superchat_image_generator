@@ -37,7 +37,7 @@ export default defineComponent({
 .content {
   background-color: #00e5ff;
   width: 579px;
-  height: 40px;
+  height: auto;
   font-size: 13px;
 }
 .username {
