@@ -1,26 +1,51 @@
 <template>
-  <div class="container">
-    <SuperChat
-      :content="state.content"
-      :content-color="colorList[selectedPriceIndex].content"
-      :header-color="colorList[selectedPriceIndex].header"
-      :price="Number(state.price).toLocaleString()"
-      :username="state.username"
-      :iconUrl="state.iconUrl"
-    />
-    <div>
-      <input v-model="state.iconUrl" class="border" />
-      <input v-model="state.username" class="border" />
-      <input v-model="state.content" class="border" />
-      <select
-        :value="state.price"
-        @input="state.price = Number($event.target.value.replace(',', ''))"
-      >
-        <option v-for="color in colorList" :key="color.price">
-          {{ color.price }}
-        </option>
-      </select>
-      <button @click="savePng">save</button>
+  <div class="container mx-auto">
+    <div class="form mb-4">
+      <div class="flex mb-4">
+        <div class="mr-4 w-3/12">
+          <label for="screen_name"> ユーザー名 </label>
+          <input id="screen_name" v-model="state.username" />
+        </div>
+        <div class="mr-4 w-2/12">
+          <label for="price">金額</label>
+          <select
+            id="price"
+            class="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            :value="state.price"
+            @input="state.price = Number($event.target.value.replace(',', ''))"
+          >
+            <option v-for="color in colorList" :key="color.price">
+              {{ color.price }}
+            </option>
+          </select>
+        </div>
+        <div class="w-7/12">
+          <label for="icon_url"> アイコン画像URL </label>
+          <input id="icon_url" placeholder="https://" v-model="state.iconUrl" />
+        </div>
+      </div>
+      <div class="mb-4 w-full">
+        <label for="screen_name"> メッセージ </label>
+        <textarea v-model="state.content" />
+      </div>
+      <div class="mt-8 w-full">
+        <button
+          @click="savePng"
+          class="mb-3 rounded-full w-full shadow bg-blue-500 px-4 py-2 text-white hover:bg-blue-400"
+        >
+          画像ダウンロード
+        </button>
+      </div>
+    </div>
+    <div class="flex justify-center">
+      <SuperChat
+        :content="state.content"
+        :content-color="colorList[selectedPriceIndex].content"
+        :header-color="colorList[selectedPriceIndex].header"
+        :price="Number(state.price).toLocaleString()"
+        :username="state.username"
+        :iconUrl="state.iconUrl"
+      />
     </div>
   </div>
 </template>
@@ -96,34 +121,11 @@ export default defineComponent({
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+label {
+  @apply block text-gray-700 text-sm font-bold mb-2;
 }
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+input,
+textarea {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none;
 }
 </style>
