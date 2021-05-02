@@ -46,7 +46,7 @@
         :content="state.content"
         :content-color="colorList[selectedPriceIndex].content"
         :header-color="colorList[selectedPriceIndex].header"
-        :price="Number(state.price).toLocaleString()"
+        :price="Number(state.price)"
         :username="state.username"
         :iconUrl="state.iconUrl"
       />

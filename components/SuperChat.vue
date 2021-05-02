@@ -10,12 +10,15 @@
       />
       <div class="text-left">
         <div class="username">{{ props.username }}</div>
-        <div class="price">¥{{ props.price }}</div>
+        <div class="price">¥{{ props.price.toLocaleString() }}</div>
       </div>
     </div>
     <div
       class="content rounded-b text-left py-2 px-4"
-      :style="{ 'background-color': props.contentColor }"
+      :style="{
+        'background-color': props.contentColor,
+        color: fontColor,
+      }"
     >
       {{ props.content }}
     </div>
@@ -23,7 +26,7 @@
 </template>
 
 <script>
-import { defineComponent } from '@nuxtjs/composition-api'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 export default defineComponent({
   props: {
     content: {},
@@ -36,9 +39,11 @@ export default defineComponent({
   setup(props) {
     const defaultIconUrl =
       'https://4.bp.blogspot.com/-toaP1vMGZAM/UNbkIddJNqI/AAAAAAAAJTk/MeuaawYOaLw/s200/mark_question.png'
+    const fontColor = computed(() => (props.price >= 2000 ? 'white' : 'black'))
     return {
       props,
       defaultIconUrl,
+      fontColor,
     }
   },
 })
