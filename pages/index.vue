@@ -68,14 +68,23 @@ export default defineComponent({
     Header,
   },
   setup() {
+    const username = computed(() => localStorage.getItem('username'))
+    const iconUrl = computed(() => localStorage.getItem('iconUrl'))
+
     const state = reactive({
       content: 'スパチャです！',
       price: 200,
-      username: '???????',
-      iconUrl: '',
+      username: username.value !== '' ? username.value : '???????',
+      iconUrl: iconUrl.value !== '' ? iconUrl.value : '',
     })
 
+    const saveUserInfo = () => {
+      localStorage.setItem('username', state.username)
+      localStorage.setItem('iconUrl', state.iconUrl)
+    }
+
     const savePng = () => {
+      saveUserInfo()
       domtoimage.toBlob(document.getElementById('card')).then(function (blob) {
         saveAs(blob, `superChat_${new Date().getTime()}.png`)
       })
