@@ -20,7 +20,10 @@
           </select>
         </div>
         <div class="w-7/12">
-          <label for="icon_url"> アイコン画像URL </label>
+          <label for="icon_url">
+            アイコン画像URL
+            <span class="text-xs">*YouTubeアカウントのアイコンの画像URL</span>
+          </label>
           <input id="icon_url" placeholder="https://" v-model="state.iconUrl" />
         </div>
       </div>
