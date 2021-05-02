@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'superchat_generator',
+    title: 'スパチャ画像ジェネレーター',
     htmlAttrs: {
       lang: 'en',
     },
