@@ -1,5 +1,6 @@
 <template>
   <div class="container mx-auto">
+    <Header class="mb-8" />
     <div class="form mb-4">
       <div class="flex mb-4">
         <div class="mr-4 w-3/12">
@@ -56,6 +57,7 @@
 <script lang="ts">
 import { computed, defineComponent, reactive } from '@nuxtjs/composition-api'
 import SuperChat from '@/components/SuperChat.vue'
+import Header from '@/components/Header.vue'
 import domtoimage from 'dom-to-image'
 import { saveAs } from 'file-saver'
 import { colorList } from '@/utils/constants'
@@ -63,6 +65,7 @@ import { colorList } from '@/utils/constants'
 export default defineComponent({
   components: {
     SuperChat,
+    Header,
   },
   setup() {
     const state = reactive({
