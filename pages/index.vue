@@ -68,8 +68,8 @@ export default defineComponent({
     Header,
   },
   setup() {
-    const username = computed(() => localStorage.getItem('username'))
-    const iconUrl = computed(() => localStorage.getItem('iconUrl'))
+    const username = computed(() => localStorage.getItem('username') || '')
+    const iconUrl = computed(() => localStorage.getItem('iconUrl') || '')
 
     const state = reactive({
       content: 'スパチャです！',
@@ -85,9 +85,11 @@ export default defineComponent({
 
     const savePng = () => {
       saveUserInfo()
-      domtoimage.toBlob(document.getElementById('card')).then(function (blob) {
-        saveAs(blob, `superChat_${new Date().getTime()}.png`)
-      })
+      domtoimage
+        .toBlob(document.getElementById('card') as HTMLElement)
+        .then(function (blob: any) {
+          saveAs(blob, `superChat_${new Date().getTime()}.png`)
+        })
     }
 
     const selectedPriceIndex = computed(() => {
