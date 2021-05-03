@@ -9,8 +9,22 @@
         class="icon mr-4 rounded-full h-10 w-10 flex items-center justify-center"
       />
       <div class="text-left">
-        <div class="username">{{ props.username }}</div>
-        <div class="price">¥{{ props.price.toLocaleString() }}</div>
+        <div
+          class="username"
+          :style="{
+            color: fontColor,
+          }"
+        >
+          {{ props.username }}
+        </div>
+        <div
+          class="price"
+          :style="{
+            color: fontColor,
+          }"
+        >
+          ¥{{ props.price.toLocaleString() }}
+        </div>
       </div>
     </div>
     <div
